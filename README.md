@@ -21,7 +21,7 @@ For non-interactive environments such as container images, declare it in `settin
   "extraKnownMarketplaces": {
     "locatw": {
       "source": {
-        "source": "url",
+        "source": "git",
         "url": "https://github.com/locatw/claude-plugins.git"
       }
     }
