@@ -1,8 +1,7 @@
 ---
 name: commit
-description: Select files to stage, then create a git commit with a WHY-focused message and user confirmation at each step
-disable-model-invocation: true
-argument-hint: '[scope] (optional — describe what to commit, e.g. "migration files only")'
+description: Select files to stage, then create a git commit with a WHY-focused message and user confirmation at each step. Use when the user asks to commit changes, create a git commit, or stage files.
+argument-hint: "[scope] (optional — describe what to commit, e.g. \"migration files only\")"
 allowed-tools: Bash, AskUserQuestion
 ---
 
