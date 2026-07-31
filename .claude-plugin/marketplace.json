@@ -1,0 +1,15 @@
+{
+  "name": "locatw",
+  "owner": {
+    "name": "locatw",
+    "url": "https://github.com/locatw"
+  },
+  "description": "Personal Claude Code plugins",
+  "plugins": [
+    {
+      "name": "loca",
+      "source": "./plugins/loca",
+      "description": "Personal workflow skills"
+    }
+  ]
+}
