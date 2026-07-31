@@ -54,8 +54,10 @@ The trade-off is that `claude plugin list` shows a SHA, so comparing two install
 ## Update
 
 ```bash
-/plugin marketplace update locatw
-/plugin install loca@locatw
+claude plugin marketplace update locatw
+claude plugin update loca@locatw
 ```
 
-Third-party marketplaces have auto-update disabled by default, so updates are an explicit step.
+Third-party marketplaces have auto-update disabled by default, so updating is an explicit step.
+`claude plugin install` reports the plugin as already installed and changes nothing, so `update` is the command that moves an existing install forward.
+Restart Claude Code afterwards to apply the new version.
