@@ -58,11 +58,15 @@ Subject line rules:
 - Aim for 50 characters, hard limit 72 characters.
 - No trailing period.
 - Type prefix: `fix`, `add`, `remove`, `doc`, `refactor`, `test`, etc.; omit if none fits naturally.
+- The prefix is the one part of the subject that names intent. Pick it from what the change does to the codebase, not from the motivation behind it.
 - Covers only the primary change, not secondary or incidental changes.
 
 Body rules:
 
-- Write WHY the change was made: the problem it solves, the constraint behind it, or the reason this approach was chosen over an obvious alternative.
+The body records what the diff cannot show.
+
+- Required — WHY the change was made: the problem it solves, the constraint behind it, or the reason this approach was chosen over an obvious alternative.
+- When it applies — a consequence the reader would otherwise hit by surprise: a side effect on callers, a trade-off knowingly accepted, or a limitation left in place.
 - Use only what the diff and the user's answer actually establish. Never invent a reason, constraint, or rejected alternative to fill the body.
 - Omit the body when the subject line already makes the reason self-evident (e.g. a typo fix), or when nothing beyond the diff was established.
 - Do NOT describe what the diff shows (file lists, function names, mechanical changes).
