@@ -25,9 +25,9 @@ If there are no changed files at all, inform the user and stop.
 
 ## Step 2: Stage the confirmed files
 
-Run git add for each confirmed file:
+Run git add for the confirmed files. Quote every path, and pass `--` before them so a path starting with `-` is not read as an option:
 
-  git add path/a.go path/b.go
+  git add -- "path/a.go" "docs/release notes.md"
 
 Then run `git diff --cached` to capture the final staged diff. Use this output for all subsequent analysis.
 
