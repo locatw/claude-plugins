@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Select files to stage, then create a git commit with a WHY-focused message and user confirmation at each step. Use when the user asks to commit changes, create a git commit, or stage files.
+description: Select files to stage, then create a git commit with a WHY-focused body and user confirmation at each step. Use when the user asks to commit changes, create a git commit, or stage files.
 argument-hint: "[scope] (optional — describe what to commit, e.g. \"migration files only\")"
 allowed-tools: Bash, AskUserQuestion
 ---
@@ -43,19 +43,18 @@ Use AskUserQuestion to show a brief summary of the staged files and ask:
 Analyze the staged diff and the user's answer to produce a message in this format:
 
 ```
-<type>: <why this change was made (imperative mood, ~50 chars)>
+<type>: <subject>
 
-<information not visible in the diff: purpose, background, reasoning, trade-offs>
+<body>
 ```
-
-Replace `<model>` with the actual model name you are running as (e.g. `Sonnet 4.6`).
 
 Subject line rules:
 
 - Use imperative mood (add, fix, remove, etc.).
-- Describe WHY, not WHAT.
-  - Bad: "Add Ping() call in RawDB.Connect()"
-  - Good: "fix: detect DB connection errors early at startup"
+- Describe WHAT the change does, in terms of behavior — not the reasoning behind it (that goes in the body), and not literal code mechanics (specific function, method, or variable names).
+  - Bad (that is the why): "fix: detect DB connection errors early at startup"
+  - Bad (names code, not behavior): "fix: call db.Ping() in RawDB.Connect()"
+  - Good: "fix: ping the DB when opening a connection"
 - Aim for 50 characters, hard limit 72 characters.
 - No trailing period.
 - Type prefix: `fix`, `add`, `remove`, `doc`, `refactor`, `test`, etc.; omit if none fits naturally.
@@ -63,12 +62,13 @@ Subject line rules:
 
 Body rules:
 
-- Aim for 1–2 sentences; only go longer if the context is genuinely complex.
-- Write only what is genuinely non-obvious from the diff: a hidden constraint, the key reason this approach was chosen over an obvious alternative, or a side-effect worth noting.
+- Write WHY the change was made: the problem it solves, the constraint behind it, or the reason this approach was chosen over an obvious alternative.
+- Use only what the diff and the user's answer actually establish. Never invent a reason, constraint, or rejected alternative to fill the body.
+- Omit the body when the subject line already makes the reason self-evident (e.g. a typo fix), or when nothing beyond the diff was established.
 - Do NOT describe what the diff shows (file lists, function names, mechanical changes).
-- Omit body entirely if the subject line is self-sufficient.
+- Aim for 1–2 sentences; only go longer if the context is genuinely complex.
 - Wrap at 72 characters.
-- Do not include a `Co-Authored-By:` trailer.
+- Do not append any trailer, including `Co-Authored-By:` and `Claude-Session:`.
 
 ## Step 5: Confirm the commit message
 
