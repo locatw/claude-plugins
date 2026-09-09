@@ -13,13 +13,15 @@ allowed-tools: Bash, AskUserQuestion
 
 Create a git commit following these steps.
 
+Whenever a step shows the user something and asks about it, put the full content inside the AskUserQuestion question text. Do not print it as text before the call, and do not put it in an option preview: text written ahead of a tool call in the same turn can be dropped before it reaches any client, and previews are cut or not rendered.
+
 ## Step 1: Propose which files to stage
 
 Analyze the injected git status, staged diff, and unstaged diff to identify all changed files.
 
 If $ARGUMENTS is provided, use it to filter which files to include (e.g., "migration files only" → include only files under migrations/).
 
-Propose a list of files to stage. If files are already staged, include them in the proposal. Present the list to the user and use AskUserQuestion to confirm or let the user adjust the list.
+Propose a list of files to stage. If files are already staged, include them in the proposal. Use AskUserQuestion with the full list inside the question text, and let the user confirm or adjust it.
 
 If there are no changed files at all, inform the user and stop.
 
@@ -33,7 +35,7 @@ Then run `git diff --cached` to capture the final staged diff. Use this output f
 
 ## Step 3: Ask the user for intent
 
-Use AskUserQuestion to show a brief summary of the staged files and ask:
+Use AskUserQuestion with a brief summary of the staged files inside the question text, followed by:
 
 > What is the purpose of this change?
 > If there is anything non-obvious that the diff doesn't make clear, share that too.
@@ -76,7 +78,7 @@ The body records what the diff cannot show.
 
 ## Step 5: Confirm the commit message
 
-Display the full message in a code block, then use AskUserQuestion to ask:
+Use AskUserQuestion with the full message inside the question text, followed by:
 
 > Does this commit message look good? You can approve it or request changes.
 
