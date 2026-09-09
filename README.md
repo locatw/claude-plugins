@@ -43,7 +43,7 @@ The URL is spelled out because the `owner/repo` shorthand clones over SSH by def
 
 | Plugin | Provides |
 | :----- | :------- |
-| `loca` | `/loca:commit` — stage files and write a commit message, confirming at each step |
+| `loca` | `/loca:commit` — stage files and write a commit message, confirming at each step<br>`/loca:show-diff` — paste the whole change set for review, `--base [ref]` adds the diff against a base ref |
 
 ## Versioning
 
