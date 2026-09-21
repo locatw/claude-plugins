@@ -76,15 +76,25 @@ The body records what the diff cannot show.
 - Wrap at 72 characters.
 - Do not append any trailer, including `Co-Authored-By:` and `Claude-Session:`.
 
-## Step 5: Confirm the commit message
+## Step 5: Review the draft
+
+Before showing the draft, check it against every rule in Step 4, one rule at a time, reading it as a future reader who has the diff but not this conversation. Three checks decide whether the content is right:
+
+- Reread the staged diff and confirm the subject describes what the diff actually does, and that it names the primary change, not a secondary one.
+- For each statement in the body, name the line of the diff or the part of the user's answer that establishes it. A statement with no source is invented; remove it.
+- Confirm the body tells that reader something the diff cannot show. If it only restates the diff, remove it.
+
+Fix every violation and check again. Only a draft that passes every rule goes to Step 6.
+
+## Step 6: Confirm the commit message
 
 Use AskUserQuestion with the full message inside the question text, followed by:
 
 > Does this commit message look good? You can approve it or request changes.
 
-If the user requests changes, revise and re-present. Repeat until approved.
+If the user requests changes, go back to Step 4 and treat the request as part of the user's answer. What the user asked for is not a violation in Step 5.
 
-## Step 6: Commit
+## Step 7: Commit
 
 Execute the commit using HEREDOC format:
 
@@ -95,6 +105,6 @@ EOF
 )"
 ```
 
-## Step 7: Verify and report
+## Step 8: Verify and report
 
 Run `git status` and `git log -1` to confirm the commit was created. Report the commit hash and subject line.
